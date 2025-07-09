@@ -29,6 +29,7 @@ jobs:
             test/subdir1/doc.typ 
             test/subdir2/doc.typ
 
+
       - name: Compile basic Typst document 
         uses:  Jarivanbakel/typst-action@v3
         with:
@@ -37,6 +38,7 @@ jobs:
             doc.typ 
             subdir1/doc.typ 
             subdir2/doc.typ
+          input: key=test
 
       - uses: actions/upload-artifact@v2
         with:
