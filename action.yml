@@ -10,6 +10,9 @@ inputs:
   token:
     description: 'Defines the token to use to execute the git API requests with, uses `env.GITHUB_TOKEN` by default'
     default: ${{ github.token }}
+  input:
+    description: 'Input string to use with --input'
+    required: false
 runs:
   using: "composite"
   steps:
@@ -88,6 +91,12 @@ runs:
           fi
           cd "$working_directory"
         fi
+
+        input_flag=""
+        if [[ -n "${{ inputs.input }}" ]]; then
+          input_flag="--input ${{ inputs.input }}"
+        fi
+
         
         paths="${{ inputs.input_files }}"
         paths=${paths//$'\n'/ }
